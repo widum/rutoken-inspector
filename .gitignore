@@ -1,0 +1,42 @@
+# Sensitive key material: never publish
+*.key
+*.pfx
+*.p12
+*.p11
+*.jks
+*.cer
+*.crt
+*.pem
+*.der
+*.p7b
+*.p7c
+*.p7m
+*.p7s
+*.p8
+*.p8e
+*.kdbx
+*.sqlite
+*.db
+*.log
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+*.jsonl
+# Build products, including embedded helper built from source
+*.exe
+*.dll
+*.test
+*.out
+assets/
+bin/
+dist/
+build/
+# Environment/private stuff
+.env
+.env.*
+!*.example
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
