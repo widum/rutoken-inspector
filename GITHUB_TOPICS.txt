@@ -1,0 +1,1 @@
+windows, go, smartcard, usb-token, pkcs11, cryptopro, diagnostics, security-tools
