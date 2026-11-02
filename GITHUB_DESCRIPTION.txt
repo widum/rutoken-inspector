@@ -1,0 +1,1 @@
+Independent Windows utility for diagnostics of cryptographic USB tokens, smart cards, certificates and CryptoPro CSP containers. Unofficial project.
