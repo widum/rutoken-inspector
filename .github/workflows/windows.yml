@@ -1,0 +1,32 @@
+name: Build Windows
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - name: Build x86 worker
+        shell: pwsh
+        run: |
+          $env:GOOS="windows"; $env:GOARCH="386"; $env:CGO_ENABLED="0"
+          New-Item -ItemType Directory -Force assets | Out-Null
+          go build -trimpath -o assets/RutokenInspector_x86_worker.exe .
+      - name: Build Windows x64
+        shell: pwsh
+        run: |
+          $env:GOOS="windows"; $env:GOARCH="amd64"; $env:CGO_ENABLED="0"
+          go build -trimpath -ldflags="-H=windowsgui" -o RutokenInspector3_v3.4.1_Win11.exe .
+      - name: Test compilation
+        shell: pwsh
+        run: |
+          $env:GOOS="windows"; $env:GOARCH="amd64"; $env:CGO_ENABLED="0"
+          go test -c -o "$env:TEMP/rutoken-inspector-tests.exe" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rutoken-inspector-win-x64
+          path: RutokenInspector3_v3.4.1_Win11.exe
